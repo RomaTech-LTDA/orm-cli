@@ -41,7 +41,7 @@
                          "commander":  "^14.0.0"
                      },
     "peerDependencies":  {
-                             "@romatech/orm": "^1.0.0"
+                             "@romatech/orm": "^1.2.0"
                          },
     "devDependencies":  {
                             "@types/node":  "^24.1.0"
