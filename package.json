@@ -6,11 +6,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/romatech-ltda/orm-cli"
+    "url": "https://github.com/RomaTech-LTDA/orm-cli"
   },
-  "homepage": "https://github.com/romatech-ltda/orm-cli#readme",
+  "homepage": "https://github.com/RomaTech-LTDA/orm-cli#readme",
   "bugs": {
-    "url": "https://github.com/romatech-ltda/orm-cli/issues"
+    "url": "https://github.com/RomaTech-LTDA/orm-cli/issues"
   },
   "keywords": [
     "orm",
