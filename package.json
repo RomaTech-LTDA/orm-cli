@@ -1,55 +1,55 @@
 {
-    "name":  "@romatech/orm-cli",
-    "version": "1.1.0",
-    "description":  "CLI for RomaTech ORM – migrations, scaffold and more",
-    "author":  "RomaTech/Leandro Romanelli",
-    "license":  "MIT",
-    "repository":  {
-                       "type":  "git",
-                       "url":  "https://github.com/RomaTech-LTDA/orm-cli"
-                   },
-    "homepage":  "https://github.com/RomaTech-LTDA/orm-cli#readme",
-    "bugs":  {
-                 "url":  "https://github.com/RomaTech-LTDA/orm-cli/issues"
-             },
-    "keywords":  [
-                     "orm",
-                     "cli",
-                     "migrations",
-                     "scaffold",
-                     "romatech",
-                     "database",
-                     "typescript"
-                 ],
-    "type":  "module",
-    "bin":  {
-                "orm":  "./src/index.js"
-            },
-    "main":  "./src/index.js",
-    "exports":  {
-                    ".":  "./src/index.js"
-                },
-    "files":  [
-                  "src",
-                  "README.md",
-                  "LICENSE"
-              ],
-    "scripts":  {
-                    "start":  "node src/index.js"
-                },
-    "dependencies":  {
-                         "commander":  "^14.0.0"
-                     },
-    "peerDependencies":  {
-                             "@romatech/orm": "^1.0.0"
-                         },
-    "devDependencies":  {
-                            "@types/node":  "^24.1.0"
-                        },
-    "engines":  {
-                    "node":  "\u003e=18"
-                },
-    "publishConfig":  {
-                          "access":  "public"
-                      }
+    "name": "@romatech/orm-cli",
+    "version": "1.2.0",
+    "description": "CLI for RomaTech ORM – migrations, scaffold and more",
+    "author": "RomaTech/Leandro Romanelli",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RomaTech-LTDA/orm-cli"
+    },
+    "homepage": "https://github.com/RomaTech-LTDA/orm-cli#readme",
+    "bugs": {
+        "url": "https://github.com/RomaTech-LTDA/orm-cli/issues"
+    },
+    "keywords": [
+        "orm",
+        "cli",
+        "migrations",
+        "scaffold",
+        "romatech",
+        "database",
+        "typescript"
+    ],
+    "type": "module",
+    "bin": {
+        "orm": "./src/index.js"
+    },
+    "main": "./src/index.js",
+    "exports": {
+        ".": "./src/index.js"
+    },
+    "files": [
+        "src",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "dependencies": {
+        "commander": "^14.0.0"
+    },
+    "peerDependencies": {
+        "@romatech/orm": "^1.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^24.1.0"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }
