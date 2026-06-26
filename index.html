@@ -1,599 +1,114 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title>@romatech/orm-cli - docs</title>
-	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
-	<style>
-		/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-		/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-		body {
-			font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-			font-size: var(--vscode-markdown-font-size, 14px);
-			padding: 0 26px;
-			line-height: var(--vscode-markdown-line-height, 22px);
-			word-wrap: break-word;
-		}
-
-		#code-csp-warning {
-			position: fixed;
-			top: 0;
-			right: 0;
-			color: white;
-			margin: 16px;
-			text-align: center;
-			font-size: 12px;
-			font-family: sans-serif;
-			background-color: #444444;
-			cursor: pointer;
-			padding: 6px;
-			box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
-		}
-
-		#code-csp-warning:hover {
-			text-decoration: none;
-			background-color: #007acc;
-			box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
-		}
-
-		body.scrollBeyondLastLine {
-			margin-bottom: calc(100vh - 22px);
-		}
-
-		body.showEditorSelection .code-line {
-			position: relative;
-		}
-
-		body.showEditorSelection .code-active-line:before,
-		body.showEditorSelection .code-line:hover:before {
-			content: "";
-			display: block;
-			position: absolute;
-			top: 0;
-			left: -12px;
-			height: 100%;
-		}
-
-		body.showEditorSelection li.code-active-line:before,
-		body.showEditorSelection li.code-line:hover:before {
-			left: -30px;
-		}
-
-		.vscode-light.showEditorSelection .code-active-line:before {
-			border-left: 3px solid rgba(0, 0, 0, 0.15);
-		}
-
-		.vscode-light.showEditorSelection .code-line:hover:before {
-			border-left: 3px solid rgba(0, 0, 0, 0.40);
-		}
-
-		.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-			border-left: none;
-		}
-
-		.vscode-dark.showEditorSelection .code-active-line:before {
-			border-left: 3px solid rgba(255, 255, 255, 0.4);
-		}
-
-		.vscode-dark.showEditorSelection .code-line:hover:before {
-			border-left: 3px solid rgba(255, 255, 255, 0.60);
-		}
-
-		.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-			border-left: none;
-		}
-
-		.vscode-high-contrast.showEditorSelection .code-active-line:before {
-			border-left: 3px solid rgba(255, 160, 0, 0.7);
-		}
-
-		.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-			border-left: 3px solid rgba(255, 160, 0, 1);
-		}
-
-		.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-			border-left: none;
-		}
-
-		img {
-			max-width: 100%;
-			max-height: 100%;
-		}
-
-		a {
-			text-decoration: none;
-		}
-
-		a:hover {
-			text-decoration: underline;
-		}
-
-		a:focus,
-		input:focus,
-		select:focus,
-		textarea:focus {
-			outline: 1px solid -webkit-focus-ring-color;
-			outline-offset: -1px;
-		}
-
-		hr {
-			border: 0;
-			height: 2px;
-			border-bottom: 2px solid;
-		}
-
-		h1 {
-			padding-bottom: 0.3em;
-			line-height: 1.2;
-			border-bottom-width: 1px;
-			border-bottom-style: solid;
-		}
-
-		h1,
-		h2,
-		h3 {
-			font-weight: normal;
-		}
-
-		table {
-			border-collapse: collapse;
-		}
-
-		table>thead>tr>th {
-			text-align: left;
-			border-bottom: 1px solid;
-		}
-
-		table>thead>tr>th,
-		table>thead>tr>td,
-		table>tbody>tr>th,
-		table>tbody>tr>td {
-			padding: 5px 10px;
-		}
-
-		table>tbody>tr+tr>td {
-			border-top: 1px solid;
-		}
-
-		blockquote {
-			margin: 0 7px 0 5px;
-			padding: 0 16px 0 10px;
-			border-left-width: 5px;
-			border-left-style: solid;
-		}
-
-		code {
-			font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-			font-size: 1em;
-			line-height: 1.357em;
-		}
-
-		body.wordWrap pre {
-			white-space: pre-wrap;
-		}
-
-		pre:not(.hljs),
-		pre.hljs code>div {
-			padding: 16px;
-			border-radius: 3px;
-			overflow: auto;
-		}
-
-		pre code {
-			color: var(--vscode-editor-foreground);
-			tab-size: 4;
-		}
-
-		/** Theming */
-
-		.vscode-light pre {
-			background-color: rgba(220, 220, 220, 0.4);
-		}
-
-		.vscode-dark pre {
-			background-color: rgba(10, 10, 10, 0.4);
-		}
-
-		.vscode-high-contrast pre {
-			background-color: rgb(0, 0, 0);
-		}
-
-		.vscode-high-contrast h1 {
-			border-color: rgb(0, 0, 0);
-		}
-
-		.vscode-light table>thead>tr>th {
-			border-color: rgba(0, 0, 0, 0.69);
-		}
-
-		.vscode-dark table>thead>tr>th {
-			border-color: rgba(255, 255, 255, 0.69);
-		}
-
-		.vscode-light h1,
-		.vscode-light hr,
-		.vscode-light table>tbody>tr+tr>td {
-			border-color: rgba(0, 0, 0, 0.18);
-		}
-
-		.vscode-dark h1,
-		.vscode-dark hr,
-		.vscode-dark table>tbody>tr+tr>td {
-			border-color: rgba(255, 255, 255, 0.18);
-		}
-	</style>
-
-	<style>
-		/* Tomorrow Theme */
-		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-
-		/* Tomorrow Comment */
-		.hljs-comment,
-		.hljs-quote {
-			color: #8e908c;
-		}
-
-		/* Tomorrow Red */
-		.hljs-variable,
-		.hljs-template-variable,
-		.hljs-tag,
-		.hljs-name,
-		.hljs-selector-id,
-		.hljs-selector-class,
-		.hljs-regexp,
-		.hljs-deletion {
-			color: #c82829;
-		}
-
-		/* Tomorrow Orange */
-		.hljs-number,
-		.hljs-built_in,
-		.hljs-builtin-name,
-		.hljs-literal,
-		.hljs-type,
-		.hljs-params,
-		.hljs-meta,
-		.hljs-link {
-			color: #f5871f;
-		}
-
-		/* Tomorrow Yellow */
-		.hljs-attribute {
-			color: #eab700;
-		}
-
-		/* Tomorrow Green */
-		.hljs-string,
-		.hljs-symbol,
-		.hljs-bullet,
-		.hljs-addition {
-			color: #718c00;
-		}
-
-		/* Tomorrow Blue */
-		.hljs-title,
-		.hljs-section {
-			color: #4271ae;
-		}
-
-		/* Tomorrow Purple */
-		.hljs-keyword,
-		.hljs-selector-tag {
-			color: #8959a8;
-		}
-
-		.hljs {
-			display: block;
-			overflow-x: auto;
-			color: #4d4d4c;
-			padding: 0.5em;
-		}
-
-		.hljs-emphasis {
-			font-style: italic;
-		}
-
-		.hljs-strong {
-			font-weight: bold;
-		}
-	</style>
-
-	<style>
-		/*
- * Markdown PDF CSS
- */
-
-		body {
-			font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-			padding: 0 12px;
-		}
-
-		pre {
-			background-color: #f8f8f8;
-			border: 1px solid #cccccc;
-			border-radius: 3px;
-			overflow-x: auto;
-			white-space: pre-wrap;
-			overflow-wrap: break-word;
-		}
-
-		pre:not(.hljs) {
-			padding: 23px;
-			line-height: 19px;
-		}
-
-		blockquote {
-			background: rgba(127, 127, 127, 0.1);
-			border-color: rgba(0, 122, 204, 0.5);
-		}
-
-		.emoji {
-			height: 1.4em;
-		}
-
-		code {
-			font-size: 14px;
-			line-height: 19px;
-		}
-
-		/* for inline code */
-		:not(pre):not(.hljs)>code {
-			color: #C9AE75;
-			/* Change the old color so it seems less like an error */
-			font-size: inherit;
-		}
-
-		/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
--------------------------------------------------------- */
-		.page {
-			page-break-after: always;
-		}
-
-		header {
-			height: 60px;
-			display: flex;
-			align-items: center;
-			padding: 0 1rem;
-			gap: 1rem;
-			z-index: 1000;
-		}
-
-		header img {
-			height: 60px;
-			width: auto;
-		}
-
-		header h1 {
-			font-size: 1.25rem;
-			margin: 0;
-			flex-grow: 1;
-			user-select: none;
-		}
-
-		header nav.links {
-			display: flex;
-			gap: 1rem;
-		}
-
-		header nav.links a {
-			text-decoration: none;
-			font-weight: 600;
-			border: 1px solid;
-			padding: 0.25rem 0.75rem;
-			border-radius: 4px;
-			transition: background-color 0.3s;
-		}
-
-		header nav.links a:hover,
-		header nav.links a:focus {
-			background-color: rgba(255 255 255 / 0.3);
-			outline: none;
-		}
-	</style>
-
-	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@romatech/orm-cli — CLI for Migrations &amp; Scaffold</title>
+    <meta name="description" content="Command-line interface for @romatech/orm. Manage migrations, apply schema changes, and scaffold entities from existing databases.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.6; }
+        a { color: #0066ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+        header { border-bottom: 1px solid #e8e8e8; padding: 1rem 0; }
+        .header-inner { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .header-inner img { height: 48px; width: 48px; border-radius: 8px; }
+        .header-inner h1 { font-size: 1.4rem; font-weight: 700; flex: 1; }
+        .header-links { display: flex; gap: 0.5rem; }
+        .header-links a { border: 1px solid #0066ff; padding: 0.3rem 0.9rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+        .header-links a:hover { background: #0066ff; color: #fff; text-decoration: none; }
+        .hero { padding: 3rem 0 2rem; }
+        .hero p { font-size: 1.15rem; color: #444; max-width: 700px; }
+        section { padding: 2rem 0; }
+        section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.5rem; }
+        .install-box { background: #1a1a2e; color: #e0e0e0; padding: 1rem 1.25rem; border-radius: 8px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.9rem; overflow-x: auto; }
+        pre { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.25rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; }
+        code { font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+        :not(pre) > code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+        .feature-card { background: #f9fafb; border: 1px solid #e8e8e8; border-radius: 8px; padding: 1.25rem; }
+        .feature-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .feature-card p { font-size: 0.85rem; color: #555; }
+        footer { border-top: 1px solid #e8e8e8; padding: 2rem 0; margin-top: 2rem; text-align: center; color: #888; font-size: 0.85rem; }
+        @media (max-width: 600px) {
+            .header-inner { flex-direction: column; align-items: flex-start; }
+            .hero p { font-size: 1rem; }
+        }
+    </style>
 </head>
-
 <body>
-	<script>
-		mermaid.initialize({
-			startOnLoad: true,
-			theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-				? 'dark'
-				: 'default'
-		});
-	</script>
-	<header>
-		<img src="logo.png" alt="RomaTech Logo" />
-		<h1 id="romatechormcli">@romatech/orm-cli</h1>
-		<nav class="links" aria-label="External links">
-			<a href="https://github.com/RomaTech-LTDA/orm-cli" target="_blank" rel="noopener noreferrer"
-				aria-label="GitHub repository">GitHub</a>
-			<a href="https://www.npmjs.com/package/@romatech/orm-cli" target="_blank" rel="noopener noreferrer"
-				aria-label="NPM package page">NPM</a>
-		</nav>
-	</header>
-	<p>Command-line interface for <a href="https://www.npmjs.com/package/@romatech/orm">@romatech/orm</a>.</p>
-	<p>Manage migrations and scaffold entities directly from your terminal.</p>
-	<hr>
-	<h2 id="installation">Installation</h2>
-	<h3 id="global-recommended">Global (recommended)</h3>
-	<pre class="hljs"><code><div>npm install -g @romatech/orm-cli
-</div></code></pre>
-	<h3 id="local-project-level">Local (project-level)</h3>
-	<pre class="hljs"><code><div>npm install --save-dev @romatech/orm-cli
-npx orm --<span class="hljs-built_in">help</span>
-</div></code></pre>
-	<hr>
-	<h2 id="configuration">Configuration</h2>
-	<p>Create an <code>orm.config.js</code> (or <code>orm.config.mjs</code>) at your project root:</p>
-	<pre class="hljs"><code><div><span class="hljs-comment">// orm.config.js</span>
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">MsSqlProvider</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@romatech/orm-providers-mssql&#x27;</span>;
+    <header>
+        <div class="container header-inner">
+            <img src="logo.png" alt="@romatech/orm-cli" />
+            <h1>@romatech/orm-cli</h1>
+            <nav class="header-links">
+                <a href="https://github.com/RomaTech-LTDA/orm-cli">GitHub</a>
+                <a href="https://www.npmjs.com/package/@romatech/orm-cli">npm</a>
+            </nav>
+        </div>
+    </header>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    <span class="hljs-comment">// Required — the database provider instance</span>
-    <span class="hljs-attr">provider</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">MsSqlProvider</span>({
-        <span class="hljs-attr">server</span>: <span class="hljs-string">&#x27;localhost&#x27;</span>,
-        <span class="hljs-attr">database</span>: <span class="hljs-string">&#x27;MyDb&#x27;</span>,
-        <span class="hljs-attr">user</span>: <span class="hljs-string">&#x27;sa&#x27;</span>,
-        <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;yourPassword&#x27;</span>,
-        <span class="hljs-attr">options</span>: { <span class="hljs-attr">trustServerCertificate</span>: <span class="hljs-literal">true</span> }
-    }),
+    <main class="container">
+        <div class="hero">
+            <p>Command-line interface for <a href="https://www.npmjs.com/package/@romatech/orm">@romatech/orm</a>. Manage migrations, apply schema changes, and scaffold TypeScript entities directly from your terminal.</p>
+        </div>
 
-    <span class="hljs-comment">// Optional — override the connection string (takes precedence over config object)</span>
-    <span class="hljs-attr">connectionString</span>: <span class="hljs-string">&#x27;&#x27;</span>,
+        <section>
+            <h2>Installation</h2>
+            <div class="install-box">npm install -g @romatech/orm-cli</div>
+        </section>
 
-    <span class="hljs-comment">// Optional — directory where migration JSON files are stored</span>
-    <span class="hljs-attr">migrationsPath</span>: <span class="hljs-string">&#x27;./migrations&#x27;</span>,
-
-    <span class="hljs-comment">// Optional — output directory for scaffolded entity files</span>
-    <span class="hljs-attr">outputDir</span>: <span class="hljs-string">&#x27;src/entities&#x27;</span>,
-
-    <span class="hljs-comment">// Optional — output directory for the scaffolded DbContext</span>
-    <span class="hljs-attr">contextDir</span>: <span class="hljs-string">&#x27;src/context&#x27;</span>,
-
-    <span class="hljs-comment">// Optional — class name for the scaffolded DbContext</span>
-    <span class="hljs-attr">contextName</span>: <span class="hljs-string">&#x27;AppDbContext&#x27;</span>,
-
-    <span class="hljs-comment">// Optional — entity module paths to pre-load (so decorators register metadata)</span>
-    <span class="hljs-attr">entities</span>: [<span class="hljs-string">&#x27;./dist/entities/*.js&#x27;</span>]
-};
-</div></code></pre>
-	<blockquote>
-		<p><strong>Tip:</strong> The CLI uses ESM dynamic imports, so you can use any provider package.</p>
-	</blockquote>
-	<hr>
-	<h2 id="commands">Commands</h2>
-	<h3 id="orm-migrationcreate-name"><code>orm migration:create &lt;name&gt;</code></h3>
-	<p>Generates a new migration JSON file based on the current entity metadata.</p>
-	<pre class="hljs"><code><div>orm migration:create InitialCreate
-orm migration:create AddProductsTable
-orm migration:create -c path/to/orm.config.js AddIndex
-</div></code></pre>
-	<p><strong>Output:</strong></p>
-	<pre class="hljs"><code><div>Migration '20260605120000_InitialCreate' created.
-</div></code></pre>
-	<p>The file is written to <code>migrationsPath</code> (default: <code>./migrations/</code>).</p>
-	<hr>
-	<h3 id="orm-update-database"><code>orm update-database</code></h3>
-	<p>Connects to the database and applies all pending migrations in chronological order.</p>
-	<pre class="hljs"><code><div>orm update-database
-orm update-database --to 20260605120000_AddUsersTable
-</div></code></pre>
-	<table>
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><code>-t, --to &lt;migration&gt;</code></td>
-				<td>Apply up to this migration (inclusive)</td>
-			</tr>
-			<tr>
-				<td><code>-c, --config &lt;path&gt;</code></td>
-				<td>Path to config file (default: <code>orm.config.js</code>)</td>
-			</tr>
-		</tbody>
-	</table>
-	<hr>
-	<h3 id="orm-downgrade-database"><code>orm downgrade-database</code></h3>
-	<p>Reverts the most recently applied migration, or reverts down to a specified target.</p>
-	<pre class="hljs"><code><div>orm downgrade-database
-orm downgrade-database --to 20260605120000_Initial
-</div></code></pre>
-	<table>
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><code>-t, --to &lt;migration&gt;</code></td>
-				<td>Revert everything after this migration (exclusive)</td>
-			</tr>
-			<tr>
-				<td><code>-c, --config &lt;path&gt;</code></td>
-				<td>Path to config file</td>
-			</tr>
-		</tbody>
-	</table>
-	<hr>
-	<h3 id="orm-scaffold"><code>orm scaffold</code></h3>
-	<p>Connects to the database, reads the schema, and generates TypeScript entity
-		files and a DbContext.</p>
-	<pre class="hljs"><code><div>orm scaffold
-orm scaffold -c path/to/orm.config.js
-</div></code></pre>
-	<table>
-		<thead>
-			<tr>
-				<th>Option</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><code>-c, --config &lt;path&gt;</code></td>
-				<td>Path to config file</td>
-			</tr>
-		</tbody>
-	</table>
-	<p><strong>Generated files:</strong></p>
-	<pre class="hljs"><code><div>src/entities/User.ts
-src/entities/Product.ts
-src/entities/Order.ts
-src/context/AppDbContext.ts
-</div></code></pre>
-	<p>Each entity file includes <code>@Entity</code>, <code>@PrimaryKey</code>, and <code>@Column</code> decorators
-		auto-detected from the database column metadata.</p>
-	<hr>
-	<h2 id="workflow-example">Workflow Example</h2>
-	<pre class="hljs"><code><div><span class="hljs-comment"># 1. Build your TypeScript project so entities are compiled</span>
-npm run build
-
-<span class="hljs-comment"># 2. Create a migration from the current entity state</span>
+        <section>
+            <h2>Quick Start</h2>
+            <pre><code># Create a migration from current entity state
 orm migration:create InitialCreate
 
-<span class="hljs-comment"># 3. Apply the migration to the database</span>
+# Apply all pending migrations
 orm update-database
 
-<span class="hljs-comment"># 4. Later, add a new entity and create another migration</span>
-orm migration:create AddOrdersTable
-orm update-database
+# Scaffold entities from existing database
+orm scaffold
 
-<span class="hljs-comment"># 5. Oops, revert the last migration</span>
-orm downgrade-database
-</div></code></pre>
-	<hr>
-	<h2 id="config-file-resolution">Config File Resolution</h2>
-	<p>The CLI looks for the config file in this order:</p>
-	<ol>
-		<li>Explicit path via <code>--config</code> / <code>-c</code> flag</li>
-		<li><code>orm.config.js</code> in the current working directory</li>
-	</ol>
-	<p>The config file must export (default or named) an object with at minimum a <code>provider</code> property.</p>
-	<hr>
-	<h2 id="requirements">Requirements</h2>
-	<ul>
-		<li>Node.js &gt;= 18</li>
-		<li>A provider package matching your database</li>
-		<li>A compiled <code>orm.config.js</code> (ESM/CJS) at your project root</li>
-	</ul>
-	<hr>
-	<h2 id="license">License</h2>
-	<p>MIT © RomaTech / Leandro Romanelli</p>
+# Revert the last migration
+orm downgrade-database</code></pre>
+        </section>
 
+        <section>
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Migration Management</h3>
+                    <p>Create, apply, and revert migrations. Supports targeting specific migration names.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Database Scaffold</h3>
+                    <p>Reverse-engineer TypeScript entity files and a DbContext from an existing database schema.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Any Provider</h3>
+                    <p>Works with all 7 ORM providers: SQL Server, MySQL, PostgreSQL, Oracle, MongoDB, SQLite, Memory.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Config File</h3>
+                    <p>Simple <code>orm.config.js</code> with provider, paths, and entity configuration.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>JSON Migrations</h3>
+                    <p>Migrations stored as JSON files — human-readable, versionable, and diffable.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>ESM Support</h3>
+                    <p>Uses dynamic ESM imports. Works with any TypeScript or JavaScript project setup.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>MIT License &copy; RomaTech / Leandro Romanelli</p>
+        </div>
+    </footer>
 </body>
-
 </html>
