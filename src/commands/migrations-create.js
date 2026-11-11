@@ -3,8 +3,10 @@
  * @description Registers the `migration:create <name>` CLI command.
  *
  * This command inspects the entity metadata registered via decorators and
- * generates a new migration JSON file that describes the current schema as
- * `up` (apply) and `down` (rollback) operations.
+ * generates a new migration JSON file with the changes since the existing
+ * migration files (new tables and columns) as `up` (apply) and `down`
+ * (rollback) operations. With no changes, `@romatech/orm` 2.1.0+ rejects
+ * with a "No model changes" error and no file is written.
  *
  * The migration file is written to `config.migrationsPath` and named with a
  * UTC timestamp prefix to guarantee lexicographic ordering, e.g.:

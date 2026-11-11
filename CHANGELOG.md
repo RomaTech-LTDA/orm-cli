@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 - `entities` patterns such as `./dist/entities/*.js` (the README example) are now expanded (`*`, `?`, `**`); they used to be imported literally and failed with `ERR_MODULE_NOT_FOUND`. A pattern that matches no file, or that ends in `**` instead of a file name pattern, is reported as an error.
-- Entity patterns keep UNC roots (`\server\share\...`) and descend into symbolic links / junctions to directories; `**` stops at a link cycle.
+- Entity patterns keep UNC roots (`\\server\share\...`) and descend into symbolic links / junctions to directories; `**` stops at a link cycle.
 - `orm --version` reports the package version instead of a hard-coded `1.0.0`.
 
 ### Changed
