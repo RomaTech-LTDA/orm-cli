@@ -1,6 +1,6 @@
 {
     "name":  "@romatech/orm-cli",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description":  "CLI for RomaTech ORM – migrations, scaffold and more",
     "author":  "RomaTech/Leandro Romanelli",
     "license":  "MIT",
@@ -35,13 +35,14 @@
                   "LICENSE"
               ],
     "scripts":  {
-                    "start":  "node src/index.js"
+                    "start":  "node src/index.js",
+                    "test":  "node --test"
                 },
     "dependencies":  {
                          "commander":  "^14.0.0"
                      },
     "peerDependencies":  {
-                             "@romatech/orm": "^2.0.0"
+                             "@romatech/orm": "^2.1.0"
                          },
     "devDependencies":  {
                             "@types/node":  "^24.1.0"

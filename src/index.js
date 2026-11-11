@@ -17,13 +17,14 @@ import { registerScaffoldCommand } from './commands/scaffold.js';
 import { registerMigrationCreateCommand } from './commands/migrations-create.js';
 import { registerUpdateDatabaseCommand } from './commands/update-database.js';
 import { registerDowngradeDatabaseCommand } from './commands/downgrade-database.js';
+import { packageVersion } from './version.js';
 
 const program = new Command();
 
 program
     .name('orm')
     .description('RomaTech ORM CLI — Manage migrations and scaffold entities')
-    .version('1.0.0');
+    .version(packageVersion);
 
 // Register all commands
 registerScaffoldCommand(program);

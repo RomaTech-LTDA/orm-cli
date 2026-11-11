@@ -60,7 +60,9 @@ export default {
     // Optional — class name for the scaffolded DbContext
     contextName: 'AppDbContext',
 
-    // Optional — entity module paths to pre-load (so decorators register metadata)
+    // Optional — entity modules to pre-load (so decorators register metadata).
+    // Plain paths or patterns with *, ? and ** (e.g. './dist/**/*.entity.js').
+    // A pattern that matches no file stops the command with an error.
     entities: ['./dist/entities/*.js']
 };
 ```
@@ -73,7 +75,10 @@ export default {
 
 ### `orm migration:create <name>`
 
-Generates a new migration JSON file based on the current entity metadata.
+Generates a new migration JSON file with the changes between the current
+entity metadata and the schema described by the existing migration files
+(new tables → `createTable`, new columns → `addColumn`). Removed or renamed
+tables/columns are not detected; write those operations by hand.
 
 ```bash
 orm migration:create InitialCreate
@@ -88,6 +93,10 @@ Migration '20260605120000_InitialCreate' created.
 ```
 
 The file is written to `migrationsPath` (default: `./migrations/`).
+
+When the entities have no changes since the last migration, no file is
+written and the command fails with a "No model changes" error (requires
+`@romatech/orm` 2.1.0 or later).
 
 ---
 
@@ -120,6 +129,17 @@ orm downgrade-database --to 20260605120000_Initial
 |--------|-------------|
 | `-t, --to <migration>` | Revert everything after this migration (exclusive) |
 | `-c, --config <path>` | Path to config file |
+
+Only migrations whose `.migration.json` file is in `migrationsPath` can be
+reverted; a name recorded in the database that is not a file there is
+rejected before anything runs.
+
+> **⚠️ Migrations created with 2.0.0 — review them before reverting.** With
+> `@romatech/orm` 2.0.0, every `orm migration:create` re-created *all* tables,
+> so the `down` of those files drops **every table** of the model. Running
+> `orm downgrade-database` on such a migration deletes all your data. Open each
+> file created with 2.0.0 and remove from `up` and `down` the operations for
+> tables that an earlier migration already created.
 
 ---
 
